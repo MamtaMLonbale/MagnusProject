@@ -12,7 +12,7 @@ public class logout {
 	}
 
 	public ForgotPassword clickOnLogout() {
-		System.out.println("i am in click on logout method");
+
 		driver.findElement(By.xpath("//span[contains(text(),'Logout')]")).click();
 		return new ForgotPassword(driver);
 
