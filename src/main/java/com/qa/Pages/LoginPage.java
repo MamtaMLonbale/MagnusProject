@@ -11,10 +11,22 @@ public class LoginPage {
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 	}
+	public String getLoginPageHeading()
+	{
+		WebElement LoginPageHeading=driver.findElement(By.xpath("//div//a/b"));
+		String heading=LoginPageHeading.getText();
+		return heading;
+	}
 
 	public String getLoginPageTitle() {
 		String loginPageTitle = driver.getTitle();
 		return loginPageTitle;
+	}
+	public String getRequiredFieldErrorMessage()
+	{
+		WebElement requiredField=driver.findElement(By.xpath("//div[@class='toast-title']"));
+		String errorMessage=requiredField.getText();
+		return errorMessage;
 	}
 
 	public String getErrorMessageEmailMobileField() {
@@ -24,20 +36,20 @@ public class LoginPage {
 		return ErrorMessage;
 	}
 
-	public String getErrorMessage_Password_Field() {
+	public String getErrorMessagePasswordField() {
 		WebElement passwordfieldErrorMessage = driver
 				.findElement(By.xpath("//input[@class='form-control input-validation-error'][1]//following::span[3]"));
 		String ErrorMessageforPasswordField = passwordfieldErrorMessage.getText();
 		return ErrorMessageforPasswordField;
 	}
 
-	public void enterUserName() {
+	public void enterUserName(String username) {
 		WebElement userName = driver.findElement(By.xpath("//input[@class='form-control'][1]"));
-		userName.sendKeys("training@jalaacademy.com");
+//		userName.sendKeys("training@jalaacademy.com");
 
 	}
 
-	public void enterPassword() {
+	public void enterPassword(String password) {
 		driver.findElement(By.xpath("//input[@type='password']")).sendKeys("jobprogram");
 	}
 

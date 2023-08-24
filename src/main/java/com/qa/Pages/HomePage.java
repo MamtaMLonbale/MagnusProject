@@ -29,12 +29,4 @@ public class HomePage extends BaseClass {
 		return AssignmentText;
 	}
 
-	// public EmployeePage clickOnEmployee() throws InterruptedException {
-	//
-	// Thread.sleep(5000);
-	// driver.findElements(By.xpath("//li/a/i")).get(2).click();
-	//
-	// return new EmployeePage(driver);
-	// }
-
 }
