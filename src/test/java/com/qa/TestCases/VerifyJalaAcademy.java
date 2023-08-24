@@ -26,7 +26,7 @@ public class VerifyJalaAcademy {
 	// Logger logger = LogManager.getLogger(VerifyJalaAcademy.class);
 	LaunchJalaSite launchJalaSite = new LaunchJalaSite();
 	LoginPage loginPage;
-	logout lo;
+	logout logOut;
 	BaseClass baseclass;
 	HomePage homePage;
 	EmployeePage employeePage;
@@ -34,7 +34,8 @@ public class VerifyJalaAcademy {
 	SaveFunctionality saveButton;
 	SearchEmployeePage searchPage;
 	EditPage editPage;
-	ForgotPassword fp;
+	ForgotPassword forgotPassword;
+	String employeeFirstName = "ram";
 
 	@Test(priority = 0, alwaysRun = true)
 	public void setup() {
@@ -94,7 +95,7 @@ public class VerifyJalaAcademy {
 		Assert.assertEquals(actualAssignmentText, expectedAssignmentText, "Incorrect assignment message");
 	}
 
-	@Test(priority = 5, dependsOnMethods = { "verifySignInButton" })
+	@Test(priority = 6, dependsOnMethods = { "verifySignInButton" })
 	public void verifyCreateText() throws InterruptedException {
 
 		employeePage = homePage.clickOnEmployee();
@@ -106,7 +107,7 @@ public class VerifyJalaAcademy {
 		Assert.assertEquals(actualCreateTitle, expectedCreateTitle, "Incorrect create title");
 	}
 
-	@Test(priority = 6, alwaysRun = true, dependsOnMethods = { "verifyCreateText" })
+	@Test(priority = 7, alwaysRun = true, dependsOnMethods = { "verifyCreateText" })
 	public void verifyEmployeeCreateHeading() throws InterruptedException {
 		Thread.sleep(6000);
 		createPage = employeePage.clickOncreate();
@@ -116,7 +117,7 @@ public class VerifyJalaAcademy {
 		Assert.assertEquals(actualEmployeeCreateTitle, expectedEmployeeCreateTitle);
 	}
 
-	@Test(priority = 7, alwaysRun = true, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 8, alwaysRun = true, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyFirstNameFieldErrorMessage() throws InterruptedException {
 		createPage.enterFirstName("");
 		createPage.clickOnSaveButton();
@@ -126,7 +127,7 @@ public class VerifyJalaAcademy {
 				"Incorrect firstname field error message");
 	}
 
-	@Test(priority = 8, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 9, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyLastNameFieldErrorMessage() throws InterruptedException {
 		createPage.enterFirstName("shivam");
 		createPage.enterLastName("");
@@ -136,7 +137,7 @@ public class VerifyJalaAcademy {
 		Assert.assertEquals(actualLNameErrorMessage, expectedLNameErrorMessage);
 	}
 
-	@Test(priority = 9, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 10, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyEmailIdEmptyFieldErrormessage() {
 		createPage.enterEmailId("");
 		createPage.clickOnSaveButton();
@@ -146,7 +147,7 @@ public class VerifyJalaAcademy {
 				"Incorrect email id field error message");
 	}
 
-	@Test(priority = 10, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 11, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyEmailIdFieldInvalidFormatErrorMessage() {
 		createPage.enterEmailId("ghjgfhjfkhkgf");
 		createPage.clickOnSaveButton();
@@ -156,7 +157,7 @@ public class VerifyJalaAcademy {
 				"Incorrect Email id format");
 	}
 
-	@Test(priority = 11, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 12, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyMobileNumberEmptyField() throws InterruptedException {
 		Thread.sleep(5000);
 		createPage.enterMobileNumber("");
@@ -167,7 +168,7 @@ public class VerifyJalaAcademy {
 				"Incorrect mobile field error message");
 	}
 
-	@Test(priority = 12, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 13, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyMobileFieldErrorMessageWithAlphabetInput() {
 		createPage.enterMobileNumber("WERRTYYGFDFD");
 		createPage.clickOnSaveButton();
@@ -177,7 +178,7 @@ public class VerifyJalaAcademy {
 				"Incorrect error message when i enter alphabet in Mobile field");
 	}
 
-	@Test(priority = 13, alwaysRun = true, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 14, alwaysRun = true, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyCancleButton() throws InterruptedException {
 		searchPage = createPage.clickOnCancle();
 		String actualHeading = searchPage.getSearchPageHeding();
@@ -186,7 +187,7 @@ public class VerifyJalaAcademy {
 
 	}
 
-	@Test(priority = 14, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 15, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifySearchEmployeeText() throws InterruptedException {
 		createPage.enterFirstName("Bharat");
 		createPage.enterLastName("Pande");
@@ -204,20 +205,20 @@ public class VerifyJalaAcademy {
 		Assert.assertEquals(actualTitle, expectedtitle, "Incorrect search employee page title");
 	}
 
-	@Test(priority = 15, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
+	@Test(priority = 16, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
 	public void verifyListOfRecored() throws InterruptedException {
 		Thread.sleep(4000);
-		searchPage.enterEmpName("ram");
+		searchPage.enterEmpName(employeeFirstName);
 		searchPage.enterMobileNo("9045677854");
 		searchPage.clickOnSearchButton();
 		Thread.sleep(5000);
 		searchPage.getEmpRecords();
 	}
 
-	@Test(priority = 16, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
+	@Test(priority = 17, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
 	public void verifyEditButton() throws InterruptedException {
 		Thread.sleep(4000);
-		searchPage.enterEmpName("ram");
+		searchPage.enterEmpName(employeeFirstName);
 		searchPage.enterMobileNo("9045677854");
 		searchPage.clickOnSearchButton();
 		Thread.sleep(5000);
@@ -227,128 +228,46 @@ public class VerifyJalaAcademy {
 		Assert.assertEquals(actualEmpEditHeading, expectedEmpEditHeading, "Incorrect Edit page heading");
 	}
 
-	@Test(priority = 17, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
-	public void verifyAddemployeeButton() {
+	@Test(priority = 18, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
+	public void verifyAddemployeeButton() throws InterruptedException {
 		searchPage.clickOnAddEmployeeButton();
-
+		createPage = searchPage.clickOncreate();
+		String actualEmpDetailsText = createPage.getEmployeeDetailsTitle();
+		String expectedEmpDetailsText = "Employee details";
+		Assert.assertEquals(actualEmpDetailsText, expectedEmpDetailsText, "Incorrect Employee details Title");
 	}
 
-	@Test(priority = 17, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
+	@Test(priority = 19, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
 	public void verifyEmployeeFirstName() throws InterruptedException {
 		Thread.sleep(4000);
-		searchPage.enterEmpName("ram");
+		searchPage.enterEmpName(employeeFirstName);
 		searchPage.enterMobileNo("9045677854");
 		searchPage.clickOnSearchButton();
 		Thread.sleep(4000);
-		searchPage.getEmpName();
+		String actualEmpFirstName = searchPage.getEmpName();
+		String expectedEmpFirstName = "ram";
+		Assert.assertEquals(actualEmpFirstName, expectedEmpFirstName, "Incorrect employee first Name");
 	}
 
-	@Test(priority = 18, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
+	@Test(priority = 20, alwaysRun = true, dependsOnMethods = { "verifyCancleButton" })
 	public void verifyEmployeeLastName() throws InterruptedException {
 		Thread.sleep(4000);
-		searchPage.enterEmpName("ram");
+		searchPage.enterEmpName(employeeFirstName);
 		searchPage.enterMobileNo("9045677854");
 		searchPage.clickOnSearchButton();
 		Thread.sleep(4000);
-		searchPage.getEmpLastName();
+		String actualEmpLastName = searchPage.getEmpLastName();
+		String expectedEmpLastName = "tiple";
+		Assert.assertEquals(actualEmpLastName, expectedEmpLastName, "Incorrect Employee last name");
 
 	}
 
-	@Test(priority = 19, dependsOnMethods = { "verifyEmployeeCreateHeading" })
+	@Test(priority = 21, dependsOnMethods = { "verifyEmployeeCreateHeading" })
 	public void verifyCountryText() {
-		createPage.selectCountry("Chine");
+		createPage.selectCountry("China");
 		String actualCountryText = createPage.gettingCountryText();
-		String expectedCountrytext = "China";
+		String expectedCountrytext = "Chine";
 		Assert.assertEquals(actualCountryText, expectedCountrytext, "Incorrect country name");
 	}
 
-	@Test(priority = 15, dependsOnMethods = { "verifyEmployeeCreateHeading" })
-	public void verifyCityText() {
-		String actualCityText;
-	}
-	//
-	// @Test(priority = 7,dependsOnMethods= {"verifyEmployeeCreateHeading"})
-	// public void verifyFirstNameFieldErrorMessage() throws InterruptedException {
-	// saveButton.clickOnSaveButton();
-	// String actualFNameFieldError=firstName.getFirstNameFieldError();
-	// String expectedFNamefielderror="Please enter first name.";
-	// Assert.assertEquals(actualFNameFieldError, expectedFNamefielderror,"Incorrect
-	// First name field error message");
-	// }
-
-	// @Test(priority = 7)
-	// public void verifyMobileNo() {
-	// createPage.EnterMobileNumber();
-	// }
-	//
-	// @Test(priority = 8)
-	// public void verifyDOB() {
-	// createPage.EnterDOB();
-	// }
-	//
-	// @Test(priority = 9)
-	// public void verifyGender() {
-	// createPage.Selectgender();
-	// }
-	//
-	// @Test(priority = 10)
-	// public void verifyAddress() {
-	// createPage.EnterAddress();
-	// }
-	//
-	// @Test(priority = 11)
-	// public void verifyCountry() {
-	// createPage.SelectCountry();
-	// }
-	//
-	// @Test(priority = 12)
-	// public void verifyCity() throws InterruptedException {
-	// createPage.SelectCity();
-	// }
-	//
-	// @Test(priority = 13)
-	// public void verifySkills() {
-	// createPage.SelectSkill();
-	// }
-	//
-	// @Test(priority = 14)
-	// public void verifySavebutton() {
-	// se = createPage.clickOnSave();
-	// }
-	//
-	// @Test(priority = 15)
-	// public void verifyEmpNameInSearchPage() throws InterruptedException {
-	// se.enterEmpName();
-	// }
-	//
-	// @Test(priority = 16)
-	// public void verifyMobileNoInSearchPage() {
-	// se.enterMobileNo();
-	// }
-	//
-	// @Test(priority = 17)
-	// public void verifySearchButton() {
-	// se.SearchButton();
-	// }
-	//
-	// @Test(priority = 18)
-	// public void verifyClearButton() {
-	// lo = se.Clear();
-	// }
-	//
-	// @Test(priority = 19)
-	// public void verifyMoreFunction() {
-	// fp = lo.clickOnLogout();
-	//
-	// }
-	//
-	// @Test(priority = 20)
-	// public void verifyForgotPassword() {
-	// fp.clickOnForgotPassword();
-	// }
-	//
-	// @Test
-	// public void VerifyAssert() {
-	// Assert.assertEquals("Mamta1", "Mamta", "Incorrect name");
-	// }
 }

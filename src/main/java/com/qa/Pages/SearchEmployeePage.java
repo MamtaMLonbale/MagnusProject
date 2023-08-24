@@ -101,8 +101,10 @@ public class SearchEmployeePage extends BaseClass {
 		return attributeName;
 	}
 
-	public void clickOnAddEmployeeButton() {
-		WebElement addEmployee = driver.findElement(By.xpath("//a[@href='/Employee/Create'][2]"));
+	public void clickOnAddEmployeeButton() throws InterruptedException {
+
+		WebElement addEmployee = driver.findElement(By.xpath("//div/a[@href='/Employee/Create']"));
+		Thread.sleep(5000);
 		addEmployee.click();
 	}
 }

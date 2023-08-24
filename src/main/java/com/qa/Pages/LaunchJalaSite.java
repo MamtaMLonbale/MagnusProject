@@ -6,6 +6,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class LaunchJalaSite {
 	public WebDriver driver = null;
+
 	public LoginPage launchSite() {
 		WebDriverManager.chromedriver().driverVersion("109").setup();
 		driver = new ChromeDriver();

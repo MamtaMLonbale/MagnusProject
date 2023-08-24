@@ -6,13 +6,14 @@ import org.openqa.selenium.WebElement;
 
 public class EditPage {
 	WebDriver driver;
+
 	public EditPage(WebDriver driver) {
-	this.driver=driver;
+		this.driver = driver;
 	}
-public String getEmployeeEditHeading()
-{
-	WebElement editHeading=driver.findElement(By.xpath("//h1"));
-	String empeditText=editHeading.getText();
-	return empeditText;
-}
+
+	public String getEmployeeEditHeading() {
+		WebElement editHeading = driver.findElement(By.xpath("//h1"));
+		String empeditText = editHeading.getText();
+		return empeditText;
+	}
 }

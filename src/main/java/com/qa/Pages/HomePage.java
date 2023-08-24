@@ -18,16 +18,14 @@ public class HomePage extends BaseClass {
 	}
 
 	public String getHomePageTitle() {
-		// WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(4000));
-		// wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[contains(text(),'Logout')]"))));
 		WebElement homePageTitle = driver.findElement(By.xpath("//center[@class='pt_100']//following::h1"));
 		String hometitle = homePageTitle.getText();
 		return hometitle;
 	}
-	public String getAssignMentText()
-	{
-		WebElement assignment=driver.findElement(By.xpath("//center/p/b"));
-		String AssignmentText=assignment.getText();
+
+	public String getAssignMentText() {
+		WebElement assignment = driver.findElement(By.xpath("//center/p/b"));
+		String AssignmentText = assignment.getText();
 		return AssignmentText;
 	}
 

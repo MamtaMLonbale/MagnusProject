@@ -20,14 +20,14 @@ public class LoginPage {
 	public String getErrorMessageEmailMobileField() {
 		WebElement emailFieldErrorMessage = driver
 				.findElement(By.xpath("//input[@class='form-control input-validation-error'][1]//following::span[3]"));
-		String ErrorMessage =emailFieldErrorMessage.getText();
+		String ErrorMessage = emailFieldErrorMessage.getText();
 		return ErrorMessage;
 	}
 
 	public String getErrorMessage_Password_Field() {
 		WebElement passwordfieldErrorMessage = driver
 				.findElement(By.xpath("//input[@class='form-control input-validation-error'][1]//following::span[3]"));
-		String ErrorMessageforPasswordField =passwordfieldErrorMessage.getText();
+		String ErrorMessageforPasswordField = passwordfieldErrorMessage.getText();
 		return ErrorMessageforPasswordField;
 	}
 
@@ -45,11 +45,13 @@ public class LoginPage {
 		driver.findElement(By.id("btnLogin")).click();
 		return new HomePage(driver);
 	}
-//
-//	public String getHomePageAfterSignIn() {
-//		WebElement createPageTitle = driver.findElement(By.xpath("//h1[contains(text(),'Welcome to JALA Academy')]"));
-//		String createPagetitle = createPageTitle.getText();
-//		return createPagetitle;
-//	}
+	//
+	// public String getHomePageAfterSignIn() {
+	// WebElement createPageTitle =
+	// driver.findElement(By.xpath("//h1[contains(text(),'Welcome to JALA
+	// Academy')]"));
+	// String createPagetitle = createPageTitle.getText();
+	// return createPagetitle;
+	// }
 
 }
